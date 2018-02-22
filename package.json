@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start:website": "./node_modules/.bin/webpack-dev-server",
     "test": "jest"
   },
   "dependencies": {
@@ -14,7 +15,8 @@
     "react-dom": "^16.2.0",
     "react-native": "0.53.3",
     "react-native-web": "^0.5.1",
-    "webpack": "^3.11.0"
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
   },
   "devDependencies": {
     "babel-jest": "22.4.1",
