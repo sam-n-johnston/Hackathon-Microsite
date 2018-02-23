@@ -5,8 +5,12 @@ import {
   Text,
   View,
   Platform,
+  Image,
+  Dimensions,
 } from 'react-native';
 import Blur from 'react-blur'
+import FullWidthImage from './components/FullWidthImage'
+let {height, width} = Dimensions.get('window')
 
 export default class VideoWithTitle extends Component {
   renderTitle () {
@@ -39,11 +43,12 @@ export default class VideoWithTitle extends Component {
   }
 
   render () {
+    console.log('this.props.distanceToTop')
+    console.log(this.props.distanceToTop)
     return (
-      <View  style={[styles.titleContainer, {...this.props.style}]} >
-        {this.renderTitle()}
-        {this.renderSubTitle()}
-        {this.renderJapaneseSubTitle()}
+      <View style={[styles.titleContainer, { ...this.props.style }]} >
+        {/* <Blur img={'../assets/TITLE.png'} blurRadius={this.props.distanceToTop } style={{height}} /> */}
+        <FullWidthImage source={require('../assets/TITLE.png')} />
       </View>
     );
   }

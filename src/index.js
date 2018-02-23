@@ -31,6 +31,7 @@ export class ReactNativeWeb extends Component {
       isVisible: true,
       currentSection: 0,
       currentFixedComponent: null,
+      top: 0,
     }
     this.handleScroll = this.handleScroll.bind(this)
     this.setSection = this.setSection.bind(this)
@@ -98,6 +99,9 @@ export class ReactNativeWeb extends Component {
     //   .getBoundingClientRect();
     let scrollTop = window.scrollY
 
+    console.log('scrollTop')
+    console.log(scrollTop)
+
     this.setState({
       top: scrollTop,
     })
@@ -150,7 +154,7 @@ export class ReactNativeWeb extends Component {
           </FadeSection>
         </View>
         <ScrollView onScroll={this.handleScroll} style={styles.container} >
-          <Title style={{zIndex: 5}} ref='UniqueElementIdentifier' />
+          <Title style={{zIndex: 5}} ref='UniqueElementIdentifier' distanceToTop={this.state.top} />
           <FadeSection style={{top: topPadding}} isVisible={this.state.currentSection === 1} >
             <FullWidthImage source={require('../assets/HKTHN–IMG01.jpg')} />
             {this.renderText(text1)}
