@@ -35,6 +35,7 @@ export default class VideoWithTitle extends Component {
           height={this.state.width / 1080 * 1920}
           url={'./assets/video.mp4'}
           playsinline
+          loop
         />
       )
     } else {
