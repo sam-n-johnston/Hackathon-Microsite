@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import Video from './Video'
 import Title from './Title'
-
-
+import Spacer from './components/Spacer'
 
 export class ReactNativeWeb extends Component {
   renderText (text) {
@@ -29,8 +28,9 @@ export class ReactNativeWeb extends Component {
         </View>
         <ScrollView style={styles.container} >
           <Title />
+          <Spacer height={1000} />
           {this.renderText(text1)}
-          
+          <Spacer height={1000} />
           {this.renderText(text1)}
         </ScrollView>
       </View>
