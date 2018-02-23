@@ -22,7 +22,10 @@ module.exports = {
         query: {
           limit: 8192
         },
-      },
+      }, {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader',
+      }
     ],
   },
   resolve: {

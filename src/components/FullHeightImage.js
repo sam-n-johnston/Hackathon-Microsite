@@ -26,10 +26,10 @@ export default class FullHeightImage extends Component {
       });
     } else {
       Image.getSize(this.props.source, (width, height) => {
-        console.log('WIDTH')
-        console.log(width)
-        console.log(height)
-        console.log(containerHeight)
+        // console.log('WIDTH')
+        // console.log(width)
+        // console.log(height)
+        // console.log(containerHeight)
         this.setState({
           width: containerHeight * width / height,
           height: containerHeight

@@ -18,7 +18,7 @@ import FullWidthImage from './components/FullWidthImage'
 import FullHeightImage from './components/FullHeightImage'
 import FadeSection from './components/FadeSection'
 
-const sectionHeights = [430, 1630, 2300, 2550, 3750, 4150, 4950, 5520, 10000000]
+const sectionHeights = [430, 1350, 2100, 2550, 3550, 4000, 4750, 5120, 10000000]
 
 export class ReactNativeWeb extends Component {
   constructor (props) {
@@ -49,8 +49,8 @@ export class ReactNativeWeb extends Component {
   }
 
   setSection (distanceToTop: number) {
-    console.log('set section')
-    console.log(distanceToTop)
+    // console.log('set section')
+    // console.log(distanceToTop)
     if (distanceToTop < sectionHeights[0]) {
       this.setState({ currentSection: 0, currentFixedComponent: <Video /> })
     } else if (distanceToTop < sectionHeights[1]) {
@@ -99,8 +99,8 @@ export class ReactNativeWeb extends Component {
     //   .getBoundingClientRect();
     let scrollTop = window.scrollY
 
-    console.log('scrollTop')
-    console.log(scrollTop)
+    // console.log('scrollTop')
+    // console.log(scrollTop)
 
     this.setState({
       top: scrollTop,
@@ -138,7 +138,7 @@ export class ReactNativeWeb extends Component {
   }
 
   render () {
-    let topPadding = -200
+    let topPadding = -300
     return (
       <View >
         <View style={styles.fixedContainer}>
@@ -157,6 +157,7 @@ export class ReactNativeWeb extends Component {
           <Title style={{zIndex: 5}} ref='UniqueElementIdentifier' distanceToTop={this.state.top} />
           <FadeSection style={{top: topPadding}} isVisible={this.state.currentSection === 1} >
             <FullWidthImage source={require('../assets/HKTHN–IMG01.jpg')} />
+            <Spacer height={25} />
             {this.renderText(text1)}
           </FadeSection>
           <FadeSection style={{top: topPadding}} isVisible={this.state.currentSection === 2 || this.state.currentSection === 1} >
@@ -189,7 +190,9 @@ export class ReactNativeWeb extends Component {
             {this.renderText(text4_2)}
             {this.renderText(text4_3)}
           </FadeSection>
-          <Spacer height={1000} />
+          <Spacer height={500} />
+          <FullWidthImage source={require('../assets/HACKATON_FINAL.png')} />
+          <Spacer height={250} />
         </ScrollView>
       </View>
     );
@@ -206,7 +209,8 @@ const styles = StyleSheet.create({
   },
   paragraphText: {
     color: 'white',
-    fontSize: 25,
+    fontSize: 22,
+    paddingLeft: 10,
   },
   fixedContainer: {
     position: Platform.OS === 'web' ? 'fixed' : 'absolute',
@@ -216,27 +220,28 @@ const styles = StyleSheet.create({
     bottom: 0,
     flex: 1,
     alignItems: 'stretch',
-    backgroundColor: 'rgba(35,35,35, 1)',
+    backgroundColor: 'rgba(20,20,20, 1)',
   }
 });
 
-let text1 = `Identity is such an unstable concept, isn’t it?
-  
-  Like subatomic particles whose behavior operate under an uncertainty principle, who you are is a function of how others perceive you. Our identities are mediated through a complex social negotiation that constantly blur the line between performance and reality.
-  
-  And how labyrinthine that negotiation has become against the backdrop of today’s cultural turbulence and technological acceleration. The virtual has expanded our sense of self into a new digital layer, which creates new modes by which our identity may be expressed, fragmented, and understood.`
+const indent = '            '
 
-let text2 = `Identity as spectacle. Two socially disparate worlds surface to mind: fashion and cosplay. Cosplay refers to the activity of dressing up as a fictional character, matching everything from hairstyle to clothing to even iconic mannerisms. The practice draws from a rich literary and graphic lineage of video games, comics, anime, and more.
- 
+let text1 = `${indent}Identity is such an unstable concept, isn’t it?
+
+Like subatomic particles whose behavior operate under an uncertainty principle, who you are is a function of how others perceive you. Our identities are mediated through a complex social negotiation that constantly blur the line between performance and reality.
+
+And how labyrinthine that negotiation has become against the backdrop of today’s cultural turbulence and technological acceleration. The virtual has expanded our sense of self into a new digital layer, which creates new modes by which our identity may be expressed, fragmented, and understood.`
+
+let text2 = `${indent}Identity as spectacle. Two socially disparate worlds surface to mind: fashion and cosplay. Cosplay refers to the activity of dressing up as a fictional character, matching everything from hairstyle to clothing to even iconic mannerisms. The practice draws from a rich literary and graphic lineage of video games, comics, anime, and more.
+
 Both fashion and cosplay revel in participating in a fantastical world that has been envisioned by an artist, such as fashion designer Rei Kawakubo’s Comme Des Garçons or video game designer Yoko Taro’s Nier: Automata. Both are primarily concerned with clothing and styling as means by which to participate and express one’s identity (assumed or otherwise).`
 
 
-let text3_1 = 'Nowhere is this phenomena more pronounced than in role playing video games, like Final Fantasy or Deus Ex, where you are cast into the role of another person and placed in a world that offers a powerful vision of an alternate reality. It’s no surprise that both video game titles have collaborated with fashion designers whose aesthetics align.'
-let text3_2 = 'In 2012, Prada and Arena Homme+ collaborated with Square Enix to dress characters from Final Fantasy XII-2, including lead heroine Lightning, with pieces from Prada’s Spring/Summer collection. Only two years later, Lightning was again cast by Nicholas Ghesquière as the face of Louis Vuitton’s Series 4 campaign, which took the character’s involvement with fashion from a print editorial to global ad campaign.'
-let text3_3 = 'Last year, Final Fantasy XV collaborated with Vivienne Westwood, who designed the wedding gown for that game’s lead female character Lunafreya, and also has an in-game store facade that players can visit.'
-let text3_4 = 'The most recent installment of video game franchise Deus Ex features techwear brand Acronym, with a custom-designed coat digitized into the game as part of the main character’s costume. Acronym’s hyper functional aesthetic and rigorously engineered approach to the research and development of their product are a natural fit in the game’s dystopian transhumanist setting. Of course, even in the video game world, buying Acronym gear probably didn’t come cheap.'
+let text3_1 = `${indent}Nowhere is this phenomena more pronounced than in role playing video games, like Final Fantasy or Deus Ex, where you are cast into the role of another person and placed in a world that offers a powerful vision of an alternate reality. It’s no surprise that both video game titles have collaborated with fashion designers whose aesthetics align.`
+let text3_2 = `In 2012, Prada and Arena Homme+ collaborated with Square Enix to dress characters from Final Fantasy XII-2, including lead heroine Lightning, with pieces from Prada’s Spring/Summer collection. Only two years later, Lightning was again cast by Nicholas Ghesquière as the face of Louis Vuitton’s Series 4 campaign, which took the character’s involvement with fashion from a print editorial to global ad campaign.`
+let text3_3 = `Last year, Final Fantasy XV collaborated with Vivienne Westwood, who designed the wedding gown for that game’s lead female character Lunafreya, and also has an in-game store facade that players can visit.`
+let text3_4 = `The most recent installment of video game franchise Deus Ex features techwear brand Acronym, with a custom-designed coat digitized into the game as part of the main character’s costume. Acronym’s hyper functional aesthetic and rigorously engineered approach to the research and development of their product are a natural fit in the game’s dystopian transhumanist setting. Of course, even in the video game world, buying Acronym gear probably didn’t come cheap.`
 
-let text4_1 = 'A vital feature of social media is that we live in an era of image, where what we seem is more important than what we really are—a veritable society of the spectacle. Take for example post-internet artist Amalia Ulman, whose Instagram-based performance art underscores just how much we take the digital personas of others as verity. Or social media personality Lil Miquela, whose hyperreal existence makes followers question her very physical existence.'
-let text4_2 = `The seams between reality and fiction become increasingly hazy.
-Might all clothes just be some form of cosplay?`
-let text4_3 = 'Life, after all, is the ultimate role-playing game.'
+let text4_1 = `${indent}A vital feature of social media is that we live in an era of image, where what we seem is more important than what we really are—a veritable society of the spectacle. Take for example post-internet artist Amalia Ulman, whose Instagram-based performance art underscores just how much we take the digital personas of others as verity. Or social media personality Lil Miquela, whose hyperreal existence makes followers question her very physical existence.`
+let text4_2 = `The seams between reality and fiction become increasingly hazy. Might all clothes just be some form of cosplay?`
+let text4_3 = `Life, after all, is the ultimate role-playing game.`
