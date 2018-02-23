@@ -6,7 +6,8 @@ import {
   View,
   Platform,
 } from 'react-native';
-import VideoWithTitle from './VideoWithTitle'
+import Video from './Video'
+import Title from './Title'
 
 
 
@@ -22,7 +23,9 @@ export class ReactNativeWeb extends Component {
   render () {
     return (
       <View style={styles.container} >
-        <VideoWithTitle />
+      <Title />
+        <Video />
+        <Title />
         {this.renderText(text1)}
       </View>
     );
