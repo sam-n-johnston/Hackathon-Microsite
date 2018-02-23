@@ -18,7 +18,7 @@ import FullWidthImage from './components/FullWidthImage'
 import FullHeightImage from './components/FullHeightImage'
 import FadeSection from './components/FadeSection'
 
-const sectionHeights = [250, 1750, 10000000]
+const sectionHeights = [250, 1750, 2600, 3000, 3400, 3800, 4300, 4800, 10000000]
 
 export class ReactNativeWeb extends Component {
   constructor (props) {
@@ -57,8 +57,40 @@ export class ReactNativeWeb extends Component {
           source={require('../assets/HKTHN–IMG02.jpg')}
         />
       })
-    } else if (distanceToTop < sectionHeights[2]) {
+    } else if (distanceToTop < sectionHeights[3]) {
       this.setState({ currentSection: 3 })
+    } else if (distanceToTop < sectionHeights[4]) {
+      this.setState({
+        currentSection: 4,
+        currentFixedComponent: <FullHeightImage
+          source={require('../assets/HKTHN–IMG03.jpg')}
+        />
+      })
+    } else if (distanceToTop < sectionHeights[5]) {
+      this.setState({
+        currentSection: 5,
+        currentFixedComponent: <FullHeightImage
+          source={require('../assets/HKTHN–IMG05.jpg')}
+        />
+      })
+    } else if (distanceToTop < sectionHeights[6]) {
+      this.setState({
+        currentSection: 6,
+        currentFixedComponent: <FullHeightImage
+          source={require('../assets/HKTHN–IMG06.jpg')}
+        />
+      })
+    } else if (distanceToTop < sectionHeights[7]) {
+      this.setState({ currentSection: 7 })
+    } else if (distanceToTop < sectionHeights[8]) {
+      this.setState({
+        currentSection: 8,
+        currentFixedComponent: <FullHeightImage
+          source={require('../assets/HKTHN–IMG07.jpg')}
+        />
+      })
+    } else if (distanceToTop < sectionHeights[9]) {
+      this.setState({ currentSection: 9 })
     }
   }
 
@@ -108,7 +140,14 @@ export class ReactNativeWeb extends Component {
       <View >
         <View style={styles.fixedContainer}>
           <FadeSection
-            isVisible={this.state.currentSection === 0 || this.state.currentSection === 2}
+            isVisible={
+              this.state.currentSection === 0 ||
+              this.state.currentSection === 2 ||
+              this.state.currentSection === 4 ||
+              this.state.currentSection === 5 ||
+              this.state.currentSection === 6 ||
+              this.state.currentSection === 8
+            }
           >
             {this.state.currentFixedComponent}
           </FadeSection>
@@ -119,8 +158,35 @@ export class ReactNativeWeb extends Component {
             <FullWidthImage source={require('../assets/HKTHN–IMG01.jpg')} />
             {this.renderText(text1)}
           </FadeSection>
-          <Spacer height={1000} />
-          {this.renderText(text2)}
+          <FadeSection isVisible={this.state.currentSection === 2} >
+            <Spacer height={100} />
+            {this.renderText(text2)}
+          </FadeSection>
+          <FadeSection isVisible={this.state.currentSection === 3} >
+            <Spacer height={100} />
+            {this.renderText(text3_1)}
+          </FadeSection>
+          <FadeSection isVisible={this.state.currentSection === 4} >
+            <Spacer height={100} />
+            {this.renderText(text3_2)}
+          </FadeSection>
+          <FadeSection isVisible={this.state.currentSection === 5} >
+            <Spacer height={100} />
+            {this.renderText(text3_3)}
+          </FadeSection>
+          <FadeSection isVisible={this.state.currentSection === 6} >
+            <Spacer height={100} />
+            {this.renderText(text3_4)}
+          </FadeSection>
+          <FadeSection isVisible={this.state.currentSection === 7} >
+            <Spacer height={100} />
+            {this.renderText(text4_1)}
+          </FadeSection>
+          <FadeSection isVisible={this.state.currentSection === 8} >
+            <Spacer height={100} />
+            {this.renderText(text4_2)}
+          </FadeSection>
+          <Spacer height={1500} />
         </ScrollView>
       </View>
     );
@@ -160,3 +226,13 @@ let text1 = `Identity is such an unstable concept, isn’t it?
 let text2 = `Identity as spectacle. Two socially disparate worlds surface to mind: fashion and cosplay. Cosplay refers to the activity of dressing up as a fictional character, matching everything from hairstyle to clothing to even iconic mannerisms. The practice draws from a rich literary and graphic lineage of video games, comics, anime, and more.
  
 Both fashion and cosplay revel in participating in a fantastical world that has been envisioned by an artist, such as fashion designer Rei Kawakubo’s Comme Des Garçons or video game designer Yoko Taro’s Nier: Automata. Both are primarily concerned with clothing and styling as means by which to participate and express one’s identity (assumed or otherwise).`
+
+
+let text3_1 = 'Nowhere is this phenomena more pronounced than in role playing video games, like Final Fantasy or Deus Ex, where you are cast into the role of another person and placed in a world that offers a powerful vision of an alternate reality. It’s no surprise that both video game titles have collaborated with fashion designers whose aesthetics align.'
+let text3_2 = 'In 2012, Prada and Arena Homme+ collaborated with Square Enix to dress characters from Final Fantasy XII-2, including lead heroine Lightning, with pieces from Prada’s Spring/Summer collection. Only two years later, Lightning was again cast by Nicholas Ghesquière as the face of Louis Vuitton’s Series 4 campaign, which took the character’s involvement with fashion from a print editorial to global ad campaign.'
+let text3_3 = 'Last year, Final Fantasy XV collaborated with Vivienne Westwood, who designed the wedding gown for that game’s lead female character Lunafreya, and also has an in-game store facade that players can visit.'
+let text3_4 = 'The most recent installment of video game franchise Deus Ex features techwear brand Acronym, with a custom-designed coat digitized into the game as part of the main character’s costume. Acronym’s hyper functional aesthetic and rigorously engineered approach to the research and development of their product are a natural fit in the game’s dystopian transhumanist setting. Of course, even in the video game world, buying Acronym gear probably didn’t come cheap.'
+
+let text4_1 = 'A vital feature of social media is that we live in an era of image, where what we seem is more important than what we really are—a veritable society of the spectacle. Take for example post-internet artist Amalia Ulman, whose Instagram-based performance art underscores just how much we take the digital personas of others as verity. Or social media personality Lil Miquela, whose hyperreal existence makes followers question her very physical existence.'
+let text4_2 = `The seams between reality and fiction become increasingly hazy.
+Might all clothes just be some form of cosplay? Life, after all, is the ultimate role-playing game.`
