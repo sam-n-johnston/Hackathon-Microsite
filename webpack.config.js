@@ -13,6 +13,9 @@ module.exports = {
         query: {
           presets: ['es2015', 'react'],
         },
+      }, {
+        test: /\.css$/,
+        loader: 'css-loader'
       },
     ],
   },
@@ -20,5 +23,6 @@ module.exports = {
     alias: {
       'react-native': 'react-native-web',
     },
+    extensions: [ '.web.js', '.js' ]
   },
 };
