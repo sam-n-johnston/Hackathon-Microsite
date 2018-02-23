@@ -6,80 +6,24 @@ import {
   View,
   Platform,
 } from 'react-native';
-import Video from './components/VideoPlayer'
+import VideoWithTitle from './VideoWithTitle'
+
+
 
 export class ReactNativeWeb extends Component {
-
-  constructor (props) {
-    super(props)
-    this.state = {
-      width: 0,
-    }
-    this.handleLayout = this.handleLayout.bind(this)
-  }
-
-  handleLayout (evt) {
-    this.setState({
-      width: evt.nativeEvent.layout.width,
-    })
-  }
-
-  renderVideoPlayer () {
-    if (Platform.OS === 'web') {
-      return (
-        <Video
-          playing
-          muted
-          width={this.state.width}
-          height={this.state.width / 1080 * 1920}
-          url={'./assets/video.mp4'}
-          playsinline
-        />
-      )
-    } else {
-      // import native code
-    }
-  }
-
-  renderTitle () {
+  renderText (text) {
     return (
-      <View>
-        <Text style={styles.title}>THE</Text>
-        <Text style={styles.title}>ULTIMATE</Text>
-        <Text style={styles.title}>RPG</Text>
-      </View>
-    )
-  }
-
-  renderSubTitle () {
-    return (
-      <View>
-        <Text style={styles.subtitle}>Exploring the Boundaries</Text>
-        <Text style={styles.subtitle}>Between Fashion and Cosplay</Text>
-      </View>
-    )
-  }
-
-  renderJapaneseSubTitle () {
-    let textArray = 'スプレのののをのる'.split('')
-    return (
-      <View style={styles.japanesesubtitleContainer} >
-        {textArray.map((letter, ind) => <Text key={ind} style={styles.japanesesubtitle}>{letter}</Text>)}
+      <View style={styles.paragraphContainer} >
+        <Text style={styles.paragraphText} >{text}</Text>
       </View>
     )
   }
 
   render () {
     return (
-      <View style={styles.container}
-        onLayout={this.handleLayout}
-      >
-        {this.renderVideoPlayer()}
-        <View style={styles.titleContainer} >
-          {this.renderTitle()}
-          {this.renderSubTitle()}
-          {this.renderJapaneseSubTitle()}
-        </View>
+      <View style={styles.container} >
+        <VideoWithTitle />
+        {this.renderText(text1)}
       </View>
     );
   }
@@ -91,37 +35,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  titleContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
+  paragraphContainer: {
     padding: 10,
   },
-  title: {
-    color: 'white',
-    fontSize: 75,
-  },
-  subtitle: {
-    color: 'white',
+  paragraphText: {
+    color: 'black',
     fontSize: 25,
-    paddingLeft: 50,
-  },
-  japanesesubtitle: {
-    fontSize: 45,
-    color: 'white',
-    marginTop: -20
-  },
-  japanesesubtitleContainer: {
-    top: -45,
   },
 });
+
+let text1 = `Identity is such an unstable concept, isn’t it?
+ 
+Like subatomic particles whose behavior operate under an uncertainty principle, who you are is a function of how others perceive you. Our identities are mediated through a complex social negotiation that constantly blur the line between performance and reality.
+ 
+And how labyrinthine that negotiation has become against the backdrop of today’s cultural turbulence and technological acceleration. The virtual has expanded our sense of self into a new digital layer, which creates new modes by which our identity may be expressed, fragmented, and understood.`
+
