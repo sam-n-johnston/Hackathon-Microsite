@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Platform,
+  ScrollView,
 } from 'react-native';
 import Video from './Video'
 import Title from './Title'
@@ -22,12 +23,11 @@ export class ReactNativeWeb extends Component {
 
   render () {
     return (
-      <View style={styles.container} >
-      <Title />
+      <ScrollView style={styles.container} >
         <Video />
         <Title />
         {this.renderText(text1)}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -35,8 +35,6 @@ export class ReactNativeWeb extends Component {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   paragraphContainer: {
     padding: 10,

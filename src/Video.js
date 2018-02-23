@@ -36,7 +36,7 @@ export default class VideoWithTitle extends Component {
         />
       )
     } else {
-      // import native code
+      <Text>Somevideo...</Text>
     }
   }
 
