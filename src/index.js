@@ -15,6 +15,7 @@ import Video from './Video'
 import Title from './Title'
 import Spacer from './components/Spacer'
 import FullWidthImage from './components/FullWidthImage'
+import FullHeightImage from './components/FullHeightImage'
 import FadeSection from './components/FadeSection'
 
 const sectionHeights = [250, 1750, 10000000]
@@ -29,6 +30,7 @@ export class ReactNativeWeb extends Component {
       isFadingIn: false,
       isVisible: true,
       currentSection: 0,
+      currentFixedComponent: null,
     }
     this.handleScroll = this.handleScroll.bind(this)
     this.setSection = this.setSection.bind(this)
@@ -45,11 +47,16 @@ export class ReactNativeWeb extends Component {
     console.log('set section')
     console.log(distanceToTop)
     if (distanceToTop < sectionHeights[0]) {
-      this.setState({ currentSection: 0 })
+      this.setState({ currentSection: 0, currentFixedComponent: <Video /> })
     } else if (distanceToTop < sectionHeights[1]) {
       this.setState({ currentSection: 1 })
     } else if (distanceToTop < sectionHeights[2]) {
-      this.setState({ currentSection: 2 })
+      this.setState({
+        currentSection: 2,
+        currentFixedComponent: <FullHeightImage
+          source={require('../assets/HKTHN–IMG02.jpg')}
+        />
+      })
     } else if (distanceToTop < sectionHeights[2]) {
       this.setState({ currentSection: 3 })
     }
@@ -96,25 +103,14 @@ export class ReactNativeWeb extends Component {
     )
   }
 
-  renderFixedStuff () {
-    return <Video />
-    //   if (this.state.currentSection === 0) {
-    //   return <Video />
-    // } else if (this.state.currentSection === 2) {
-    //   return <Video />
-    // }
-  }
-
   render () {
-    console.log('render')
-    console.log(this.state.currentSection)
     return (
       <View >
         <View style={styles.fixedContainer}>
           <FadeSection
             isVisible={this.state.currentSection === 0 || this.state.currentSection === 2}
           >
-            {this.renderFixedStuff()}
+            {this.state.currentFixedComponent}
           </FadeSection>
         </View>
         <ScrollView style={styles.container} >
@@ -148,6 +144,9 @@ const styles = StyleSheet.create({
     top: Platform.OS === 'ios' ? 25 : 0,
     left: 0,
     right: 0,
+    bottom: 0,
+    flex: 1,
+    alignItems: 'stretch',
     backgroundColor: 'rgba(35,35,35, 1)',
   }
 });
