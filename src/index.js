@@ -15,6 +15,9 @@ import Video from './Video'
 import Title from './Title'
 import Spacer from './components/Spacer'
 import FullWidthImage from './components/FullWidthImage'
+import FadeSection from './components/FadeSection'
+
+const sectionHeights = [250]
 
 export class ReactNativeWeb extends Component {
   constructor (props) {
@@ -25,6 +28,7 @@ export class ReactNativeWeb extends Component {
       isFadingOut: false,
       isFadingIn: false,
       isVisible: true,
+      currentSection: 0,
     }
     this.handleScroll = this.handleScroll.bind(this)
   }
@@ -37,7 +41,6 @@ export class ReactNativeWeb extends Component {
   }
 
   handleScroll (event) {
-
     let test = ReactDOM
       .findDOMNode(this.refs['UniqueElementIdentifier'])
       .getBoundingClientRect();
@@ -51,19 +54,7 @@ export class ReactNativeWeb extends Component {
     console.log('scrollTop')
     console.log(scrollTop)
 
-    if (scrollTop > 500) {
-      if (!this.state.isFadingOut && this.state.isVisible) {
-        this.fadeOut(() => {
-          this.setState({
-            isFadingOut: false,
-            isVisible: false,
-          })
-        })
-        this.setState({
-          isFadingOut: true,
-        })
-      }
-    } else {
+    if (scrollTop < sectionHeights[0]) {
       if (!this.state.isFadingIn && !this.state.isVisible) {
         this.fadeIn(() => {
           this.setState({
@@ -73,6 +64,20 @@ export class ReactNativeWeb extends Component {
         })
         this.setState({
           isFadingIn: true,
+          currentSection: 0,
+        })
+      }
+    } else {
+      if (!this.state.isFadingOut && this.state.isVisible) {
+        this.fadeOut(() => {
+          this.setState({
+            isFadingOut: false,
+            isVisible: false,
+          })
+        })
+        this.setState({
+          isFadingOut: true,
+          currentSection: 1,
         })
       }
     }
@@ -80,7 +85,6 @@ export class ReactNativeWeb extends Component {
   }
 
   fadeIn (cb) {
-    console.log('FADE IN ======================================================================')
     Animated.timing(
       this.state.fadeAnim,
       {
@@ -91,7 +95,6 @@ export class ReactNativeWeb extends Component {
   }
 
   fadeOut (cb) {
-    console.log('FADE OUT ======================================================================')
     Animated.timing(
       this.state.fadeAnim,
       {
@@ -119,11 +122,10 @@ export class ReactNativeWeb extends Component {
         </View>
         <ScrollView style={styles.container} >
           <Title ref='UniqueElementIdentifier' />
-          <Spacer height={750} />
-          <FullWidthImage
-            source={require('./HKTHN–IMG01.jpg')}
-          />
-          {this.renderText(text1)}
+          <FadeSection isVisible={this.state.currentSection === 1} >
+            <FullWidthImage source={require('../assets/HKTHN–IMG01.jpg')} />
+            {this.renderText(text1)}
+          </FadeSection>
           <Spacer height={1000} />
           {this.renderText(text1)}
         </ScrollView>
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
     top: Platform.OS === 'ios' ? 25 : 0,
     left: 0,
     right: 0,
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(35,35,35, 1)',
   }
 });
 
