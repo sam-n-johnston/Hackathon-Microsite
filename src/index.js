@@ -43,13 +43,13 @@ export class ReactNativeWeb extends Component {
 
   setSection (distanceToTop: number) {
     if (distanceToTop < sectionHeights[0]) {
-      this.setState({currentSection: 0})
+      this.setState({ currentSection: 0 })
     } else if (distanceToTop < sectionHeights[1]) {
-      this.setState({currentSection: 1})
+      this.setState({ currentSection: 1 })
     } else if (distanceToTop < sectionHeights[1]) {
-      this.setState({currentSection: 2})
+      this.setState({ currentSection: 2 })
     } else if (distanceToTop < sectionHeights[1]) {
-      this.setState({currentSection: 3})
+      this.setState({ currentSection: 3 })
     }
   }
 
@@ -125,9 +125,9 @@ export class ReactNativeWeb extends Component {
     return (
       <View >
         <View style={styles.fixedContainer}>
-          <Animated.View style={{ opacity: this.state.fadeAnim }} >
+          <FadeSection isVisible={this.state.currentSection === 0} >
             <Video />
-          </Animated.View>
+          </FadeSection>
         </View>
         <ScrollView style={styles.container} >
           <Title ref='UniqueElementIdentifier' />
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
 });
 
 let text1 = `Identity is such an unstable concept, isn’t it?
-
-Like subatomic particles whose behavior operate under an uncertainty principle, who you are is a function of how others perceive you. Our identities are mediated through a complex social negotiation that constantly blur the line between performance and reality.
-
-And how labyrinthine that negotiation has become against the backdrop of today’s cultural turbulence and technological acceleration. The virtual has expanded our sense of self into a new digital layer, which creates new modes by which our identity may be expressed, fragmented, and understood.`
+  
+  Like subatomic particles whose behavior operate under an uncertainty principle, who you are is a function of how others perceive you. Our identities are mediated through a complex social negotiation that constantly blur the line between performance and reality.
+  
+  And how labyrinthine that negotiation has become against the backdrop of today’s cultural turbulence and technological acceleration. The virtual has expanded our sense of self into a new digital layer, which creates new modes by which our identity may be expressed, fragmented, and understood.`
 
