@@ -16,6 +16,12 @@ module.exports = {
       }, {
         test: /\.css$/,
         loader: 'css-loader'
+      }, {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 8192
+        },
       },
     ],
   },
@@ -23,6 +29,6 @@ module.exports = {
     alias: {
       'react-native': 'react-native-web',
     },
-    extensions: [ '.web.js', '.js' ]
+    extensions: ['.web.js', '.js']
   },
 };

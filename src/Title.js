@@ -52,17 +52,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    color: 'black',
+    color: 'white',
     fontSize: 75,
   },
   subtitle: {
-    color: 'black',
+    color: 'white',
     fontSize: 25,
     paddingLeft: 50,
   },
   japanesesubtitle: {
     fontSize: 45,
-    color: 'black',
+    color: 'white',
     marginTop: -20
   },
   japanesesubtitleContainer: {
