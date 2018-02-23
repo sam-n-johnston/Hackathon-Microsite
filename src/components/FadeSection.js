@@ -15,7 +15,7 @@ export default class ReactNativeWeb extends Component {
     super(props)
     this.state = {
       width: 0,
-      fadeAnim: new Animated.Value(0),
+      fadeAnim: new Animated.Value(props.isVisible ? 1 : 0),
       isFadingOut: false,
       isFadingIn: false,
     }
@@ -68,7 +68,7 @@ export default class ReactNativeWeb extends Component {
 
   render () {
     return (
-      <Animated.View style={{ opacity: this.state.fadeAnim }} >
+      <Animated.View style={{ ...this.props.style, opacity: this.state.fadeAnim }} >
         {this.props.children}
       </Animated.View>
     );
