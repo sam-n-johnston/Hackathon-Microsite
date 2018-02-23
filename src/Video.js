@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import Video from './components/VideoPlayer'
 
+console.log('native')
+
 export default class VideoWithTitle extends Component {
   constructor (props) {
     super(props)
@@ -36,7 +38,15 @@ export default class VideoWithTitle extends Component {
         />
       )
     } else {
-      <Text>Somevideo...</Text>
+      return (
+        <View>
+          <Text>Somevideo...</Text>
+          <Text>Somevideo...</Text>
+          <Text>Somevideo...</Text>
+          <Text>Somevideo...</Text>
+          <Text>Somevideo...</Text>
+        </View>
+      )
     }
   }
 

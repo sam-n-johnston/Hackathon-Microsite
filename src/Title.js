@@ -49,23 +49,20 @@ export default class VideoWithTitle extends Component {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
     padding: 10,
   },
   title: {
-    color: 'white',
+    color: 'black',
     fontSize: 75,
   },
   subtitle: {
-    color: 'white',
+    color: 'black',
     fontSize: 25,
     paddingLeft: 50,
   },
   japanesesubtitle: {
     fontSize: 45,
-    color: 'white',
+    color: 'black',
     marginTop: -20
   },
   japanesesubtitleContainer: {

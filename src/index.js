@@ -23,11 +23,17 @@ export class ReactNativeWeb extends Component {
 
   render () {
     return (
-      <ScrollView style={styles.container} >
-        <Video />
-        <Title />
-        {this.renderText(text1)}
-      </ScrollView>
+      <View style={{}} >
+        <View style={styles.fixedContainer}>
+          <Video />
+        </View>
+        <ScrollView style={styles.container} >
+          <Title />
+          {this.renderText(text1)}
+          
+          {this.renderText(text1)}
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -43,6 +49,13 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 25,
   },
+  fixedContainer: {
+    position: Platform.OS === 'web' ? 'fixed' : 'absolute',
+    top:  Platform.OS === 'ios' ? 25 : 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'red',
+  }
 });
 
 let text1 = `Identity is such an unstable concept, isn’t it?
