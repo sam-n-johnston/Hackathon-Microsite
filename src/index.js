@@ -17,7 +17,7 @@ import Spacer from './components/Spacer'
 import FullWidthImage from './components/FullWidthImage'
 import FadeSection from './components/FadeSection'
 
-const sectionHeights = [250]
+const sectionHeights = [250, 10000000]
 
 export class ReactNativeWeb extends Component {
   constructor (props) {
@@ -31,6 +31,7 @@ export class ReactNativeWeb extends Component {
       currentSection: 0,
     }
     this.handleScroll = this.handleScroll.bind(this)
+    this.setSection = this.setSection.bind(this)
   }
 
   componentWillMount () {
@@ -38,6 +39,18 @@ export class ReactNativeWeb extends Component {
   }
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  setSection (distanceToTop: number) {
+    if (distanceToTop < sectionHeights[0]) {
+      this.setState({currentSection: 0})
+    } else if (distanceToTop < sectionHeights[1]) {
+      this.setState({currentSection: 1})
+    } else if (distanceToTop < sectionHeights[1]) {
+      this.setState({currentSection: 2})
+    } else if (distanceToTop < sectionHeights[1]) {
+      this.setState({currentSection: 3})
+    }
   }
 
   handleScroll (event) {
@@ -51,8 +64,7 @@ export class ReactNativeWeb extends Component {
       top: scrollTop,
     })
 
-    console.log('scrollTop')
-    console.log(scrollTop)
+    this.setSection(scrollTop)
 
     if (scrollTop < sectionHeights[0]) {
       if (!this.state.isFadingIn && !this.state.isVisible) {
@@ -64,7 +76,6 @@ export class ReactNativeWeb extends Component {
         })
         this.setState({
           isFadingIn: true,
-          currentSection: 0,
         })
       }
     } else {
@@ -77,11 +88,9 @@ export class ReactNativeWeb extends Component {
         })
         this.setState({
           isFadingOut: true,
-          currentSection: 1,
         })
       }
     }
-
   }
 
   fadeIn (cb) {
