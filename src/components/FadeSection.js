@@ -51,7 +51,7 @@ export default class ReactNativeWeb extends Component {
       this.state.fadeAnim,
       {
         toValue: 1,
-        duration: 500,
+        duration: 750,
       }
     ).start(cb);
   }
@@ -61,7 +61,7 @@ export default class ReactNativeWeb extends Component {
       this.state.fadeAnim,
       {
         toValue: 0,
-        duration: 500,
+        duration: 750,
       }
     ).start(cb);
   }

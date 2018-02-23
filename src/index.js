@@ -18,7 +18,7 @@ import FullWidthImage from './components/FullWidthImage'
 import FullHeightImage from './components/FullHeightImage'
 import FadeSection from './components/FadeSection'
 
-const sectionHeights = [250, 1750, 2600, 3000, 3400, 3800, 4300, 4800, 10000000]
+const sectionHeights = [430, 1630, 2300, 2550, 3750, 4150, 4950, 5520, 10000000]
 
 export class ReactNativeWeb extends Component {
   constructor (props) {
@@ -37,10 +37,14 @@ export class ReactNativeWeb extends Component {
   }
 
   componentWillMount () {
-    window.addEventListener('scroll', this.handleScroll);
+    if (Platform.OS === 'web') {
+      window.addEventListener('scroll', this.handleScroll);
+    }
   }
   componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll);
+    if (Platform.OS === 'web') {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
   }
 
   setSection (distanceToTop: number) {
@@ -61,10 +65,7 @@ export class ReactNativeWeb extends Component {
       this.setState({ currentSection: 3 })
     } else if (distanceToTop < sectionHeights[4]) {
       this.setState({
-        currentSection: 4,
-        currentFixedComponent: <FullHeightImage
-          source={require('../assets/HKTHN–IMG03.jpg')}
-        />
+        currentSection: 4
       })
     } else if (distanceToTop < sectionHeights[5]) {
       this.setState({
@@ -76,9 +77,6 @@ export class ReactNativeWeb extends Component {
     } else if (distanceToTop < sectionHeights[6]) {
       this.setState({
         currentSection: 6,
-        currentFixedComponent: <FullHeightImage
-          source={require('../assets/HKTHN–IMG06.jpg')}
-        />
       })
     } else if (distanceToTop < sectionHeights[7]) {
       this.setState({ currentSection: 7 })
@@ -136,6 +134,7 @@ export class ReactNativeWeb extends Component {
   }
 
   render () {
+    let topPadding = -200
     return (
       <View >
         <View style={styles.fixedContainer}>
@@ -143,39 +142,38 @@ export class ReactNativeWeb extends Component {
             isVisible={
               this.state.currentSection === 0 ||
               this.state.currentSection === 2 ||
-              this.state.currentSection === 4 ||
               this.state.currentSection === 5 ||
-              this.state.currentSection === 6 ||
               this.state.currentSection === 8
             }
           >
             {this.state.currentFixedComponent}
           </FadeSection>
         </View>
-        <ScrollView style={styles.container} >
-          <Title ref='UniqueElementIdentifier' />
-          <FadeSection isVisible={this.state.currentSection === 1} >
+        <ScrollView onScroll={this.handleScroll} style={styles.container} >
+          <Title style={{zIndex: 5}} ref='UniqueElementIdentifier' />
+          <FadeSection style={{top: topPadding}} isVisible={this.state.currentSection === 1} >
             <FullWidthImage source={require('../assets/HKTHN–IMG01.jpg')} />
             {this.renderText(text1)}
           </FadeSection>
-          <FadeSection isVisible={this.state.currentSection === 2} >
-            <Spacer height={100} />
+          <FadeSection style={{top: topPadding}} isVisible={this.state.currentSection === 2 || this.state.currentSection === 1} >
             {this.renderText(text2)}
           </FadeSection>
           <FadeSection isVisible={this.state.currentSection === 3} >
-            <Spacer height={100} />
+            <Spacer height={50} />
             {this.renderText(text3_1)}
           </FadeSection>
           <FadeSection isVisible={this.state.currentSection === 4} >
-            <Spacer height={100} />
+            <Spacer height={50} />
+            <FullWidthImage source={require('../assets/HKTHN–IMG03.jpg')} />
             {this.renderText(text3_2)}
           </FadeSection>
           <FadeSection isVisible={this.state.currentSection === 5} >
-            <Spacer height={100} />
+            <Spacer height={150} />
             {this.renderText(text3_3)}
           </FadeSection>
           <FadeSection isVisible={this.state.currentSection === 6} >
-            <Spacer height={100} />
+            <Spacer height={250} />
+            <FullWidthImage source={require('../assets/HKTHN–IMG06.jpg')} />
             {this.renderText(text3_4)}
           </FadeSection>
           <FadeSection isVisible={this.state.currentSection === 7} >
@@ -183,10 +181,11 @@ export class ReactNativeWeb extends Component {
             {this.renderText(text4_1)}
           </FadeSection>
           <FadeSection isVisible={this.state.currentSection === 8} >
-            <Spacer height={100} />
+            <Spacer height={200} />
             {this.renderText(text4_2)}
+            {this.renderText(text4_3)}
           </FadeSection>
-          <Spacer height={1500} />
+          <Spacer height={1000} />
         </ScrollView>
       </View>
     );
@@ -235,4 +234,5 @@ let text3_4 = 'The most recent installment of video game franchise Deus Ex featu
 
 let text4_1 = 'A vital feature of social media is that we live in an era of image, where what we seem is more important than what we really are—a veritable society of the spectacle. Take for example post-internet artist Amalia Ulman, whose Instagram-based performance art underscores just how much we take the digital personas of others as verity. Or social media personality Lil Miquela, whose hyperreal existence makes followers question her very physical existence.'
 let text4_2 = `The seams between reality and fiction become increasingly hazy.
-Might all clothes just be some form of cosplay? Life, after all, is the ultimate role-playing game.`
+Might all clothes just be some form of cosplay?`
+let text4_3 = 'Life, after all, is the ultimate role-playing game.'

@@ -38,7 +38,7 @@ export default class VideoWithTitle extends Component {
 
   render () {
     return (
-      <View style={styles.titleContainer} >
+      <View  style={[styles.titleContainer, {...this.props.style}]} >
         {this.renderTitle()}
         {this.renderSubTitle()}
         {this.renderJapaneseSubTitle()}
