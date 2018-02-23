@@ -6,11 +6,13 @@ import {
   View,
   Platform,
 } from 'react-native';
+import Blur from 'react-blur'
 
 export default class VideoWithTitle extends Component {
   renderTitle () {
     return (
       <View>
+        {Platform.OS === 'web' ? <Blur img={'../assets/HKTHN–IMG02.jpg'} blurRadius={5} /> : null}
         <Text style={styles.title}>THE</Text>
         <Text style={styles.title}>ULTIMATE</Text>
         <Text style={styles.title}>RPG</Text>

@@ -5729,6 +5729,12 @@ react-art@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-blur@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-blur/-/react-blur-0.6.0.tgz#01565e7bf03ef73eb644fb9a77656c15e3b37c70"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-clone-referenced-element@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-clone-referenced-element/-/react-clone-referenced-element-1.0.1.tgz#2bba8c69404c5e4a944398600bcc4c941f860682"
